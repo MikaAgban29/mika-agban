@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Grade Calculator</h1>
+
+    <form method="POST">
+        <label for="prelim_grade">Enter your Prelim grade:</label>
+        <input type="text" id="prelim_grade" name="prelim_grade">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <!-- Result Section is moved to the bottom of the page -->
+    <div class="result-section">
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        
+        {% if midterm and final %}
+            <p>You need at least {{ midterm|round(2) }} in the Midterm and {{ final|round(2) }} in the Final to pass.</p>
+        {% endif %}
+        
+        {% if result %}
+            <p style="color: green;">{{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
